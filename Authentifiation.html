@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">    
+	<title>Вход в систему</title>
+	
+	<style type="text/css">
+	html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+	body{
+		margin: 0;
+		padding: 0;	
+		text-align: left;
+	}
+	</style>
+</head>
+<body style="font-size: 14px; position: relative; padding: 15px 20px;" bgcolor="#181818">
+
+<!--<div class="offline"> Не подключена </div>-->
+<!--<div class="not_configured"> Не подключена </div>-->
+<div class="configured"> Настроена </div>
+
+<!--https://github.com/mindsellers/alice-relay/tree/test/front/alice-connector-->
+
+<form id="form1" method="get" action='#'>
+
+<div class="name">
+	<input type="text" id="name-input" placeholder="Введите в меня WI-FI" name="ssid" >
+</div>
+
+<div class="password">
+	<input type="password" id="password-input" placeholder="Введите пароль" name="secret" value="DEFAULT PSW">
+	<a href="#" class="eye" onclick="return show_hide_password(this);"></a>
+</div>
+
+<div class="btn">
+	<button type="submit" class="submit" >Войти</button>
+</div>
+</form>
+
+
+<style type="text/css">
+
+.configured
+{
+	font-size: 22px;
+	color: green;
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+	margin: 1 0 15px 0;
+}
+
+.not_configured
+{
+	font-size: 22px;
+	color: orange;
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+	margin: 1 0 15px 0;
+}
+
+.offline{
+	font-size: 22px;
+	color: red;
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+	margin: 1 0 15px 0;
+}
+
+.btn{
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+	margin: 1 0 15px 0;
+}
+
+.submit {
+	width: 120px;
+	height: 32px;
+	padding: 0 0 2px;
+	font: 16px "Trebuchet MS", Tahoma, Arial, sans-serif;
+	outline: none;
+	position: relative;
+	cursor: pointer;
+	border-radius: 3px;
+	color: #5D7731;
+	text-shadow: 1px 1px #D0E5A4;
+	border: 1px solid #89A94D;
+	border-top: 1px solid #AAD063;
+	border-bottom: 1px solid #6D883B;
+	box-shadow:
+		inset 0 1px #E0EEB6,
+		inset 1px 0 #C6E08D,
+		inset -1px 0 #C6E08D,
+		inset 0 -1px #B4D579,
+		0 2px #799545,
+		0 3px #6D883B,
+		0 4px 2px rgba(0,0,0,0.4)
+	;
+	background: -moz-linear-gradient(top,  #cae285 0%, #a3cd5a 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cae285), color-stop(100%,#a3cd5a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #cae285 0%,#a3cd5a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #cae285 0%,#a3cd5a 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #cae285 0%,#a3cd5a 100%); /* IE10+ */
+	background: linear-gradient(top,  #cae285 0%,#a3cd5a 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cae285', endColorstr='#a3cd5a',GradientType=0 ); /* IE6-9 */
+	background-color: #B6D76F;
+}
+.submit::-moz-focus-inner{border:0}
+.submit:hover {
+	border-top: 1px solid #98B85B;
+	box-shadow:
+		inset 0 1px #CCE3A1,
+		inset 1px 0 #C6E08D,
+		inset -1px 0 #C6E08D,
+		inset 0 -1px #C7E18E,
+		0 2px #799545,
+		0 3px #6D883B,
+		0 4px 2px rgba(0,0,0,0.4)
+	;
+	background: -moz-linear-gradient(top,  #abd164 0%, #b9d972 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#abd164), color-stop(100%,#b9d972)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #abd164 0%,#b9d972 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #abd164 0%,#b9d972 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #abd164 0%,#b9d972 100%); /* IE10+ */
+	background: linear-gradient(top,  #abd164 0%,#b9d972 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abd164', endColorstr='#b9d972',GradientType=0 ); /* IE6-9 */
+	background-color: #B6D76F;
+}
+.submit:active {
+	top: 3px;
+	border: 1px solid #88A84E;
+	border-top: 1px solid #6E883F;
+	border-bottom: 1px solid #95B855;
+	background: #A7CF5F;
+	box-shadow: inset 0 1px 2px #779441;
+}
+
+
+.name {
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+}
+#name-input {
+	width: 100%;
+	padding: 5px 0;
+	height: 30px;
+	line-height: 40px;
+	text-indent: 10px;
+	margin: 0 0 15px 0;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-size: 18px;
+}
+
+
+.password {
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+}
+#password-input {
+	width: 100%;
+	padding: 5px 0;
+	height: 30px;
+	line-height: 40px;
+	text-indent: 10px;
+	margin: 0 0 15px 0;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-size: 18px;
+}
+
+
+.eye {
+	position: absolute;
+	top: 14px;
+	right: 6px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+
+    #margin: 100px;
+    width: 13px;
+    height: 13px;
+    border: solid 1px #000;
+    border-radius:  75% 15%;
+    #position: relative;
+    transform: rotate(45deg);
+}
+.eye:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: solid 1px #000;
+  border-radius: 50%;
+  left: 3px;
+  top: 3px;
+  background: black;
+}
+
+.eye.view {
+	border-bottom: 3px solid #f00;
+	border-radius: 50%;
+    #background: black;
+}
+
+
+</style>
+<script>
+function show_hide_password(target){
+	var input = document.getElementById('password-input');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+	}
+	return false;
+}
+</script>
+</body>
+</html>
